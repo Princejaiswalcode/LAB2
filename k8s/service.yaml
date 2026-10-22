@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  annotations:
+    # makes the AWS Classic ELB use an HTTP listener -> RequestCount / Latency metrics in CloudWatch
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+spec:
+  type: LoadBalancer
+  selector: { app: frontend }
+  ports:
+    - port: 80
+      targetPort: 3000

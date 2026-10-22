@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build: ./app
+    image: focc-frontend:local
+    ports:
+      - "8080:3000"
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    networks:
+      - appnet
+  redis:
+    image: redis:7-alpine
+    networks:
+      - appnet
+networks:
+  appnet:
+    driver: bridge

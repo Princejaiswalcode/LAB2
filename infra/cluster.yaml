@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: focc-lab2
+  region: ap-south-1
+managedNodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    iam:
+      withAddonPolicies:
+        cloudWatch: true   # lets Container Insights publish metrics
